@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-infrastructure-toolkit"
+version = "1.0.0"
+description = "Production-grade utilities for LLM applications and AI infrastructure"
+authors = [{name = "Cody Kickertz", email = "cody.kickertz@pm.me"}]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "chromadb>=0.5.0",
+    "sentence-transformers>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.6.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ChromaDB
+.chromadb/
+chroma.sqlite3
+
+# Testing
+.pytest_cache/
+.coverage
+
+# IDE
+.vscode/
+*.swp
+
+# Templates
+templates/*.txt
+!templates/example.txt
+
+# Output
+analysis_output/
