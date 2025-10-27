@@ -1,7 +1,11 @@
 """Evaluation demonstration | LLM-as-Judge and bias detection"""
 
-from src.evaluation import LLMJudge, QualityDimension
-from src.evaluation.bias_detector import BiasDetector
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from src.evaluation import LLMJudge, QualityDimension, BiasDetector
 
 
 def main():

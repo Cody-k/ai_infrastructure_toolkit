@@ -1,6 +1,10 @@
 """Vector search demonstration | RAG pattern implementation"""
 
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from src.vector_search import VectorSearch
 
 

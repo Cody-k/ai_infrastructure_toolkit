@@ -1,6 +1,10 @@
 """Template demonstration | Prompt template management"""
 
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from src.prompts import TemplateManager
 
 
