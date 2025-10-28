@@ -1,6 +1,6 @@
 # AI Infrastructure Toolkit
 
-Production utilities for LLM applications and AI infrastructure.
+Utilities for LLM applications and AI infrastructure.
 
 ## Features
 
