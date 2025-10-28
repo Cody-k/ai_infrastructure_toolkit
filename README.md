@@ -1,14 +1,38 @@
 # AI Infrastructure Toolkit
 
-Utilities for LLM applications and AI infrastructure.
+Comprehensive utilities for LLM applications: evaluation, bias detection, archiving, workflows.
 
 ## Features
 
-**LLM Evaluation**: Quality assessment using LLM-as-Judge patterns with configurable quality gates
+**LLM Evaluation**
+- Quality assessment using LLM-as-Judge patterns
+- Configurable quality dimensions (relevance, clarity, effectiveness, accuracy)
+- Quality gates (minimum score thresholds)
 
-**Vector Search**: ChromaDB utilities for semantic search and RAG implementations
+**Bias Detection**
+- Automated pattern matching (gender, age, disability, assumptions)
+- Risk assessment (low/medium/high)
+- Actionable recommendations
 
-**Prompt Management**: Template system with variable substitution and versioning
+**Prompt Management**
+- Template system with variable substitution
+- Prompt archiving with metadata
+- Version control and historical tracking
+- Quality score and bias risk logging
+
+**Workflow Orchestration**
+- Complete pipeline: evaluate → check bias → archive
+- Quality gates enforcement
+- Automated metadata generation
+
+**Vector Search** (optional)
+- ChromaDB integration for semantic search
+- Find similar prompts by meaning
+- Duplicate detection
+
+**DSPy Optimization** (optional)
+- Algorithmic prompt optimization
+- Iterative refinement
 
 ## Installation
 
@@ -16,48 +40,84 @@ Utilities for LLM applications and AI infrastructure.
 uv venv
 source .venv/bin/activate
 uv pip install -e ".[dev]"
+
+# Optional: for vector search
+pip install chromadb sentence-transformers
+
+# Optional: for DSPy optimization
+pip install dspy-ai
 ```
 
 ## Quick Start
 
 ```python
-from src import LLMJudge, VectorSearch, TemplateManager
-from src.evaluation import BiasDetector
+from src import LLMJudge, BiasDetector
+from src.prompts import PromptArchive, TemplateManager
+from src.workflows import PromptPipeline
 
-# Evaluate LLM output quality
+# Quality evaluation
 judge = LLMJudge(min_score=7.0)
-result = judge.evaluate(content="Your text", goal="Summarize data")
-print(f"Score: {result.overall_score}/10, Passed: {result.passed}")
+result = judge.evaluate("Your prompt", "Goal")
+print(f"Score: {result.overall_score}/10")
 
-# Detect bias in content
+# Bias detection
 detector = BiasDetector()
-bias_result = detector.scan("Content to check")
-print(f"Risk: {bias_result.risk_level}, Issues: {len(bias_result.findings)}")
+bias = detector.scan("Content to check")
+print(f"Risk: {bias.risk_level}")
 
-# Semantic search with vector embeddings
-search = VectorSearch(collection_name="docs")
-search.add_documents(["Doc 1", "Doc 2"], ids=["1", "2"])
-results = search.search("query", top_k=5)
+# Archiving
+archive = PromptArchive()
+archived = archive.save(
+    prompt_content="Your prompt",
+    target_system="claude",
+    goal="Analysis",
+    quality_score=8.5,
+    bias_risk="low",
+)
 
-# Prompt templates with variables
-templates = TemplateManager()
-templates.add_template("analysis", "Analyze ${topic} for ${purpose}")
-output = templates.render_template("analysis", topic="data", purpose="insights")
+# Complete workflow
+pipeline = PromptPipeline()
+result = pipeline.process(
+    prompt_content="Prompt",
+    target_system="claude",
+    goal="Generate analysis",
+)
 ```
 
-**Examples:** See `examples/` for complete demonstrations
+## Examples
 
-## Modules
+```bash
+python examples/bias_detection_demo.py     # Bias patterns
+python examples/evaluation_demo.py         # Quality gates
+python examples/template_demo.py           # Templates
+python examples/complete_pipeline.py       # Full workflow
+```
 
-**evaluation/** - LLM-as-Judge quality assessment, bias detection
-**vector_search/** - ChromaDB semantic search, RAG utilities
-**prompts/** - Template management, variable substitution
-**local_llm/** - Ollama client for local LLM deployment (optional)
+## Architecture
+
+```
+src/
+├── evaluation/
+│   ├── llm_judge.py        # Quality assessment
+│   ├── bias_detector.py    # Bias detection
+│   └── dspy_optimizer.py   # DSPy optimization (optional)
+├── prompts/
+│   ├── template_manager.py # Templates
+│   └── archiving.py        # Prompt archiving
+├── vector_search/
+│   ├── chromadb_client.py  # Vector DB
+│   └── semantic_engine.py  # Search workflows (optional)
+└── workflows/
+    └── pipeline.py         # Complete workflows
+
+tests/                      # 18 tests
+examples/                   # 5 demonstrations
+```
 
 ## Testing
 
 ```bash
-pytest
+pytest -v  # 18 tests (vector search skipped if ChromaDB not installed)
 ```
 
 ## Background
@@ -67,9 +127,13 @@ Patterns from systems achieving:
 - 12,000+ document chunks (RAG systems)
 - 136,000+ vectors indexed (medical terminology)
 
+Extracted from ai_manage (2,099 LOC source)
+
 ## Technologies
 
-**Python 3.11+** | ChromaDB | sentence-transformers | pytest | Ruff
+Python 3.11+ · dataclasses · pytest · Ruff
+
+*Optional:* ChromaDB · sentence-transformers · DSPy
 
 ## License
 
@@ -77,5 +141,5 @@ MIT
 
 ---
 
-**Author**: Cody Kickertz
-**Contact**: [LinkedIn](https://linkedin.com/in/Cody-Kickertz/)
+**Author:** Cody Kickertz
+**Contact:** [LinkedIn](https://linkedin.com/in/Cody-Kickertz/)
