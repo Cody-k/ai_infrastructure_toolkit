@@ -60,12 +60,12 @@ output = templates.render_template("analysis", topic="data", purpose="insights")
 pytest
 ```
 
-## Production Use
+## Background
 
-Patterns extracted from systems including:
-- Prompt optimization framework (96% test pass rate)
-- RAG implementations processing 12,000+ document chunks
-- Vector search across 136,000+ indexed records
+Patterns from systems achieving:
+- 96% test pass rate (prompt optimization)
+- 12,000+ document chunks (RAG systems)
+- 136,000+ vectors indexed (medical terminology)
 
 ## Technologies
 
