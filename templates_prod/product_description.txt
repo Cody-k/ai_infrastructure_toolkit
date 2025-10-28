@@ -1,0 +1,2 @@
+# Product marketing template
+Describe ${product} highlighting ${key_features} for ${audience}.
