@@ -110,14 +110,14 @@ src/
 └── workflows/
     └── pipeline.py         # Complete workflows
 
-tests/                      # 18 tests
+tests/                      # 21 tests
 examples/                   # 5 demonstrations
 ```
 
 ## Testing
 
 ```bash
-pytest -v  # 18 tests (vector search skipped if ChromaDB not installed)
+pytest -v  # 21 tests (vector search skipped if ChromaDB not installed)
 ```
 
 ## Background
@@ -127,7 +127,7 @@ Patterns from systems achieving:
 - 12,000+ document chunks (RAG systems)
 - 136,000+ vectors indexed (medical terminology)
 
-Extracted from ai_manage (2,099 LOC source)
+**Stats:** 883 LOC · 21 tests · Python 3.11+
 
 ## Technologies
 
